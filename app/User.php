@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function emails()
+    {
+        $this->hasMany(Email::class, 'userid', 'id');
+    }
+
+    public function emailRecord()
+    {
+        $this->hasMany(EmailRecord::class, 'userid', 'id');
+    }
 }
