@@ -29,3 +29,7 @@ Route::get('check', function (){
 Route::get('/token', function (){
     return csrf_token();
 });
+
+Route::group(['prefix' => 'email'], function (){
+    Route::post('/new', 'EmailComposeController@create');
+});
