@@ -27,7 +27,8 @@
                    });
            });
            $('#inbox').click(function (ev) {
-               console.log(ev);
+               self.$panel_group_inbox.show;
+               self.$panel_group_sent.hide();
            });
            $('#sent_mail').click(function (ev) {
                $.ajax({
@@ -73,6 +74,7 @@
     fillsentMails:function (data) {
         var self=this;
         self.$panel_group_inbox.hide();
+        self.$panel_group_sent.show();
         for(var i=0;i<data.length;i++){
             //data[i].body=data[i].body.replace(/↵/g, "<br/>");
             self.$panel_group_sent.append('<div class="panel panel-default"> ' +
