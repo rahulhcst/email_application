@@ -23,7 +23,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="home">
-                        <div class="list-group" id="list-group">
+                        {{--<div class="list-group" id="list-group">
                             <div class="list-group-item read" data-toggle="collapse" data-target="#demo">
                                 <span class="name" style="min-width: 120px;display: inline-block;">Bhaumik Patel</span>
                                 <span class="">This is big title</span>
@@ -35,6 +35,19 @@
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>--}}
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse1">Collapsible panel</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class=" collapse">
+                                    <div class="panel-body">Panel Body</div>
+                                    <div class="panel-footer">Panel Footer</div>
+                                </div>
                             </div>
                         </div>
                     </div>
