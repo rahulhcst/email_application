@@ -21,9 +21,11 @@ class EmailComposeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $isCreated = $request->user()->emails()->create(['timestamp' => time()]);
+
+        return response()->json();
     }
 
     /**
