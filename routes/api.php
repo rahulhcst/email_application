@@ -27,5 +27,5 @@ Route::get('check', function (){
 });
 
 Route::get('/token', function (){
-    return csrf_field();
+    return csrf_teoken();
 });
