@@ -26,7 +26,7 @@
                    });
            });
            self.$mail_type.click(function (ev) {
-               console.log(this);
+               console.log(ev);
            });
        },
        getEmails:function () {
