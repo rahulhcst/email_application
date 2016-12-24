@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\EmailMapper;
+use App\EmailRecord;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,12 +75,22 @@ class EmailComposeController extends Controller
         return false;
     }
 
-    private function insertEmailRecord(Request $request, $receiver)
+    private function insertEmailRecord($emailId, $receiver)
     {
         $receiverId = $this->getUserId($receiver);
+
         if ($receiverId)
         {
-            $isCreated = $request->user()->senderEmailRecord->create([
+            $isCreated = EmailRecord::create(['email_id' => $emailId, 'user_id' => $receiverId, 'category_id' => 1, 'timestamp' => time()]);
+
+            return true;
+        }
+
+        return false;
+
+        if ($receiverId)
+        {
+            $isCreated = $request->user()->senderEmailRecords->create([
                 'mailid' => $request->input('id'),
                 'receiverid' => $receiverId,
             ]);
@@ -104,15 +115,17 @@ class EmailComposeController extends Controller
     public function update(Request $request, $id)
     {
         $email = $request->user()->email()->find($id);
-        $email->time = time();
+        $email->timestamp = time();
         $email->subject = $request->input('subject');
         $email->body = $request->input('body');
         //$email->attachment = $request->input('attachment');
         $email->save();
-        EmailMapper::create(['email_recordid' => 1]);
-        $receivers = explode(',', $request->input('receivers'));
-        foreach ($receivers as $receiver){
+        EmailRecord::create(['email_id' => $email->id, 'user_id' => $request->user()->id, 'category_id' => 2, 'timestamp' => time()]);
 
+        //EmailMapper::create(['email_recordid' => 1]);
+        $receivers = $request->input('receivers');
+        foreach ($receivers as $receiver){
+            $this->insertEmailRecord($id, $receiver);
         }
     }
 
