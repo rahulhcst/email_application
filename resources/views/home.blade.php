@@ -74,9 +74,21 @@
     </div>
     <div id="compose_window">>
         <h4 class="header">New Message</h4>
-        <to,subject,body,>
-        <form>
-
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="email">To</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" id="subject" placeholder="Subject">
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="subject">Body</label>
+                <textarea class="form-control" id="subject" placeholder="" rows="5"></textarea>
+            </div>
         </form>
     </div>
 
