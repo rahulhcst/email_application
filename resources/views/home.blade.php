@@ -20,9 +20,7 @@
                     <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
                 </span>Primary</a></li>
                 </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="home">
+
                         {{--<div class="list-group" id="list-group">
                             <div class="list-group-item read" data-toggle="collapse" data-target="#demo">
                                 <span class="name" style="min-width: 120px;display: inline-block;">Bhaumik Patel</span>
@@ -50,13 +48,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <div id="compose_window">
-        <h4 class="header">New Message<span class="pull-right"><span class="glyphicon glyphicon-search" onclick="Gmail.saveToDraft(this);" aria-hidden="true"></span></span></h4>
+        <h4 class="header">New Message<span class="pull-right"><span class="glyphicon glyphicon-remove-circle" onclick="Gmail.saveToDraft(this);" aria-hidden="true"></span></span></h4>
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="email">To</label>
