@@ -27,7 +27,7 @@
                    });
            });
            $('#inbox').click(function (ev) {
-               self.$panel_group_inbox.show;
+               self.$panel_group_inbox.show();
                self.$panel_group_sent.hide();
            });
            $('#sent_mail').click(function (ev) {
