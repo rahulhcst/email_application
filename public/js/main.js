@@ -16,7 +16,7 @@
            self.$compose.click(function () {
                self.$compose_window.show(100);
                $.ajax({
-                   method: "GET",
+                   method: "POST",
                    url: "email/new"
                })
                    .done(function( response ) {
@@ -28,7 +28,7 @@
        getEmails:function () {
            var self=this;
            $.ajax({
-               method: "POST",
+               method: "GET",
                url: "email/inbox"
            })
                .done(function( response ) {
