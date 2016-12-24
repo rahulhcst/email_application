@@ -23,14 +23,19 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="home">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item read">
+                        <div class="list-group" id="list-group">
+                            <div class="list-group-item read" data-toggle="collapse" data-target="#demo">
                                 <span class="name" style="min-width: 120px;display: inline-block;">Bhaumik Patel</span>
                                 <span class="">This is big title</span>
                                 <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span>
                                 <span class="badge">12:10 AM</span>
-                                <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span>
-                            </a>
+                                <div class=""></div>
+                            </div>
+                            <div id="demo" class="collapse">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
                         </div>
                     </div>
                 </div>
