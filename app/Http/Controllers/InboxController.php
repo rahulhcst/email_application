@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Email;
+use App\User;
 use Illuminate\Http\Request;
 
 class InboxController extends Controller
@@ -57,10 +59,26 @@ class InboxController extends Controller
     {
         $records = $request->user()->emailRecord()->where('category_id', 1)->get();
 
+        //var_dump($records);
+        $mails = [];
+
         if (!empty($records))
         {
-
+            foreach ($records as $record)
+            {
+                $emailRecord = Email::find($record->email_id);
+                if (!empty($emailRecord))
+                {
+                    $mail['subject'] = $emailRecord->subject;
+                    $mail['body'] = $emailRecord->body;
+                    $user = User::find($emailRecord->userid);
+                    $mail['name'] = $user->name;
+                    $mail['time'] = $emailRecord->updated_at;
+                    array_push($mails, $mail);
+                }
+            }
         }
+        return response()->json($mails);
     }
 
     /**
