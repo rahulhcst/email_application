@@ -39,14 +39,13 @@
         fillInbox:function (data) {
            var self=this;
             for(var i=0;i<data.length;i++){
-                data[i].username="Rahul";
              self.$panel_group.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
                  '<a data-toggle="collapse" href="#collapse1"> ' +
-                 '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].username+'</span> ' +
+                 '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].name+'</span> ' +
                  '<span class="">'+data[i].subject+'</span> ' +
-                 '<span class="badge">12:10 AM</span> ' +
+                 '<span class="badge pull-right">'+data[i].time+'</span> ' +
                  '</a> ' +
                  '</h4>'+
                  '</div> ' +
