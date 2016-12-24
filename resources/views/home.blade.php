@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        {{--<div class="row">
             <div class="col-sm-3 col-md-2">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <hr />
+        <hr />--}}
         <div class="row">
             <div class="col-sm-3 col-md-2">
                 <a href="#" class="btn btn-danger btn-sm btn-block" role="button">COMPOSE</a>
