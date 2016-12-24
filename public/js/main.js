@@ -39,18 +39,18 @@
         fillInbox:function (data) {
            var self=this;
             for(var i=0;i<data.length;i++){
-                data[i].body=data[i].body.replace(/↵/g, "<br/>");
+                //data[i].body=data[i].body.replace(/↵*/g, "<br/>");
              self.$panel_group.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
-                 '<a data-toggle="collapse" href="#collapse1"> ' +
+                 '<a data-toggle="collapse" href="#mail'+data[i].id+'"> ' +
                  '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].name+'</span> ' +
                  '<span class="">'+data[i].subject+'</span> ' +
                  '<span class="badge pull-right">'+data[i].time.date+'</span> ' +
                  '</a> ' +
                  '</h4>'+
                  '</div> ' +
-                 '<div id="collapse1" class=" collapse"> ' +
+                 '<div id="mail'+data[i].id+'" class=" collapse"> ' +
                  '<div class="panel-body">'+data[i].body+'</div> ' +
                  '</div> ' +
                  '</div>');
