@@ -123,7 +123,7 @@ class EmailComposeController extends Controller
         EmailRecord::create(['email_id' => $email->id, 'user_id' => $request->user()->id, 'category_id' => 2, 'timestamp' => time()]);
 
         //EmailMapper::create(['email_recordid' => 1]);
-        $receivers = explode(',', $request->input('receivers'));
+        $receivers = $request->input('receivers');
         foreach ($receivers as $receiver){
             $this->insertEmailRecord($request, $receiver);
         }
