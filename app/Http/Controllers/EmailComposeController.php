@@ -116,6 +116,7 @@ class EmailComposeController extends Controller
     {
         $email = $request->user()->email()->find($id);
         $email->timestamp = time();
+        //$email->subject = htmlspecialchars($request->input('subject'));
         $email->subject = $request->input('subject');
         $email->body = $request->input('body');
         //$email->attachment = $request->input('attachment');

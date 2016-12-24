@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Email;
-use App\User;
 use Illuminate\Http\Request;
 
-class InboxController extends Controller
+class SentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -57,7 +55,7 @@ class InboxController extends Controller
      */
     public function showAll(Request $request)
     {
-        $records = $request->user()->emailRecord()->where('category_id', 1)->get();
+        $records = $request->user()->emailRecord()->where('category_id', 2)->get();
 
         //var_dump($records);
         $mails = [];
@@ -73,7 +71,8 @@ class InboxController extends Controller
                     $mail['subject'] = $emailRecord->subject;
                     //$mail['body'] = htmlspecialchars($emailRecord->body);
                     $mail['body'] = nl2br($emailRecord->body);
-                    $user = User::find($emailRecord->userid);
+                    //$user = User::find($emailRecord->userid);
+                    $user = User::find($mail->user_id);
                     $mail['name'] = $user->name;
                     $mail['time'] = $emailRecord->updated_at;
                     array_push($mails, $mail);
