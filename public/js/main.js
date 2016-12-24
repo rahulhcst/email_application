@@ -8,7 +8,7 @@
        $email:$("#email"),
        $subject:$("#subject"),
        $email_body:$("#email_body"),
-       $list_group:$('#list-group'),
+       $panel_group:$('#panel-group'),
        currentMailID:null,
        init:function () {
            var self=this;
@@ -38,13 +38,21 @@
        },
         fillInbox:function (data) {
             for(var i=0;i<data.length;i++){
-
-             this.$list_group.append('<a href="#" class="list-group-item"> ' +
+                data[i].username="Rahul";
+             this.$panel_group.append('<div class="panel panel-default"> ' +
+                 '<div class="panel-heading"> ' +
+                 '<h4 class="panel-title">' +
+                 '<a data-toggle="collapse" href="#collapse1"> ' +
                  '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].username+'</span> ' +
                  '<span class="">'+data[i].subject+'</span> ' +
-                 '<span class="text-muted" style="font-size: 11px;">'+data[i].body+'</span> ' +
-                 '<span class="badge">'+data[i].time+'</span>'+
-            '</a>');
+                 '<span class="badge">12:10 AM</span> ' +
+                 '</a> ' +
+                 '</h4>'+
+                 '</div> ' +
+                 '<div id="collapse1" class=" collapse"> ' +
+                 '<div class="panel-body">'+data[i].body+'</div> ' +
+                 '</div> ' +
+                 '</div>');
             }
         },
        sendMail:function () {
