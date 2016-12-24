@@ -22,3 +22,11 @@ Route::get('/home', 'HomeController@index');
 Route::get('/token', function (){
     return csrf_token();
 });
+
+//Route::get('email/new', 'EmailComposeController@create');
+
+Route::group(['prefix' => 'email', 'middleware' => 'auth'],function (){
+    //Route::post('/new', 'EmailComposeController@create');
+    Route::post('/new', 'EmailComposeController@create');
+    Route::put('/{id}', 'EmailComposeController@create');
+});

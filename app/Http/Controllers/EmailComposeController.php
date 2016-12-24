@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use League\Flysystem\Exception;
 
 class EmailComposeController extends Controller
 {
@@ -23,7 +25,21 @@ class EmailComposeController extends Controller
      */
     public function create(Request $request)
     {
-        $isCreated = $request->user()->emails()->create(['timestamp' => time()]);
+        //var_dump($request);
+        //var_dump(Auth::user());
+        //echo 'checl';
+        //var_dump($request->user());
+        //return $request->user()->email;
+        //die('dhdh');
+        /*if ($request->user()->emails()->create(['timestamp' => time()]))
+            return response()->json('success');
+        else
+            throw new Exception('error');*/
+
+        /*var_dump($request->user());
+        die;*/
+
+        $isCreated = $request->user()->email()->create(['timestamp' => time()]);
         if (is_object($isCreated))
             return response()->json($isCreated);
         return response('error', 500);
