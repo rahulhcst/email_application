@@ -73,7 +73,7 @@
         </div>
     </div>
     <div id="compose_window">
-        <h4 class="header">New Message<span class="pull-right">&close;</span></h4>
+        <h4 class="header">New Message<span class="pull-right"><i onclick="$(this).parents().hide(100)" class="fa fa-times-circle" aria-hidden="true"></i></span></h4>
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="email">To</label>

@@ -17,7 +17,7 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 /*************Compose email box css*********************/
 #compose_window{
     width: 400px;
-    height: 500px;
+    height: 450px;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -25,12 +25,13 @@ hr { margin-top: 5px;margin-bottom: 10px; }
     color: #000;
     display: none;
     border: 1px solid #CCC;
-    padding: 0 15px 10px 15px
+    padding: 0 15px 10px 15px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
 }
 #compose_window form{
     padding: 15px;
 }
-#compose_window h1{
+.header{
     padding: 5px;
     background-color: #9d9d9d;
 

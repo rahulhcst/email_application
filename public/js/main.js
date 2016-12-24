@@ -8,7 +8,7 @@ $(document).ready(function () {
        init:function () {
            var self=this;
            self.$compose.click(function () {
-               self.$compose_window.css("display","block");
+               self.$compose_window.show(100);
            });
        }
 
