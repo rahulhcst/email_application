@@ -75,13 +75,13 @@ class EmailComposeController extends Controller
         return false;
     }
 
-    private function insertEmailRecord(Request $request, $receiver)
+    private function insertEmailRecord($emailId, $receiver)
     {
         $receiverId = $this->getUserId($receiver);
 
         if ($receiverId)
         {
-            $isCreated = EmailRecord::create(['email_id' => $request->input('id'), 'user_id' => $receiverId, 'category_id' => 1, 'timestamp' => time()]);
+            $isCreated = EmailRecord::create(['email_id' => $emailId, 'user_id' => $receiverId, 'category_id' => 1, 'timestamp' => time()]);
 
             return true;
         }
@@ -125,7 +125,7 @@ class EmailComposeController extends Controller
         //EmailMapper::create(['email_recordid' => 1]);
         $receivers = $request->input('receivers');
         foreach ($receivers as $receiver){
-            $this->insertEmailRecord($request, $receiver);
+            $this->insertEmailRecord($id, $receiver);
         }
     }
 
