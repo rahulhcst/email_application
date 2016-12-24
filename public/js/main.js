@@ -8,7 +8,8 @@
        $email:$("#email"),
        $subject:$("#subject"),
        $email_body:$("#email_body"),
-       $panel_group:$('#panel-group'),
+       $panel_group_inbox:$('#panel-group-inbox'),
+       $panel_group_sent:$('#panel-group-sent'),
        $mail_type:$("#mail_type"),
        currentMailID:null,
        init:function () {
@@ -25,8 +26,17 @@
                        //alert(self.currentMailID);
                    });
            });
-           self.$mail_type.click(function (ev) {
+           $('#inbox').click(function (ev) {
                console.log(ev);
+           });
+           $('#sent_mail').click(function (ev) {
+               $.ajax({
+                   method: "GET",
+                   url: "/sent_mails"
+               })
+                   .done(function( response ) {
+                       self.fillsentMails(response);
+                   });
            });
        },
        getEmails:function () {
@@ -44,7 +54,7 @@
            var self=this;
             for(var i=0;i<data.length;i++){
                 //data[i].body=data[i].body.replace(/↵/g, "<br/>");
-             self.$panel_group.append('<div class="panel panel-default"> ' +
+             self.$panel_group_inbox.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
                  '<a data-toggle="collapse" href="#mail'+data[i].id+'"> ' +
@@ -60,6 +70,27 @@
                  '</div>');
             }
         },
+    fillsentMails:function (data) {
+        var self=this;
+        self.$panel_group_inbox.hide();
+        for(var i=0;i<data.length;i++){
+            //data[i].body=data[i].body.replace(/↵/g, "<br/>");
+            self.$panel_group_sent.append('<div class="panel panel-default"> ' +
+                '<div class="panel-heading"> ' +
+                '<h4 class="panel-title">' +
+                '<a data-toggle="collapse" href="#mail'+data[i].id+'"> ' +
+                '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].name+'</span> ' +
+                '<span class="">'+data[i].subject+'</span> ' +
+                '<span class="badge pull-right">'+data[i].time.date+'</span> ' +
+                '</a> ' +
+                '</h4>'+
+                '</div> ' +
+                '<div id="mail'+data[i].id+'" class=" collapse"> ' +
+                '<div class="panel-body">'+data[i].body+'</div> ' +
+                '</div> ' +
+                '</div>');
+        }
+    },
        sendMail:function () {
            var self=this;
            var receivers=self.$email.val().split(',');

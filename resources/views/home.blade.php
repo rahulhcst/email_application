@@ -20,9 +20,18 @@
                     <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
                 </span>Primary</a></li>
                 </ul>
-                        <div class="panel-group" id="panel-group">
+                        <div class="panel-group" id="panel-group-inbox">
 
                         </div>
+                <div class="panel-group" id="panel-group-sent">
+
+                </div>
+                <div class="panel-group" id="panel-group-drafts">
+
+                </div>
+                <div class="panel-group" id="panel-group-trash">
+
+                </div>
             </div>
         </div>
     </div>
