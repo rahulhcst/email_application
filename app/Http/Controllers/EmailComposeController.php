@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\EmailMapper;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use League\Flysystem\Exception;
@@ -25,20 +27,6 @@ class EmailComposeController extends Controller
      */
     public function create(Request $request)
     {
-        //var_dump($request);
-        //var_dump(Auth::user());
-        //echo 'checl';
-        //var_dump($request->user());
-        //return $request->user()->email;
-        //die('dhdh');
-        /*if ($request->user()->emails()->create(['timestamp' => time()]))
-            return response()->json('success');
-        else
-            throw new Exception('error');*/
-
-        /*var_dump($request->user());
-        die;*/
-
         $isCreated = $request->user()->email()->create(['timestamp' => time()]);
         if (is_object($isCreated))
             return response()->json($isCreated);
@@ -78,6 +66,34 @@ class EmailComposeController extends Controller
         //
     }
 
+    private function getUserId($email)
+    {
+        $user = User::where('email', $email)->first();
+        if (!empty($user))
+            return $user->id;
+        return false;
+    }
+
+    private function insertEmailRecord(Request $request, $receiver)
+    {
+        $receiverId = $this->getUserId($receiver);
+        if ($receiverId)
+        {
+            $isCreated = $request->user()->senderEmailRecord->create([
+                'mailid' => $request->input('id'),
+                'receiverid' => $receiverId,
+            ]);
+
+            if (is_object($isCreated))
+            {
+                EmailMapper::create(['email_recordid' => $isCreated->id, 'userid' => $receiverId, 'categoryid' => 1, 'timestamp' => time()]);
+            }
+
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -87,7 +103,17 @@ class EmailComposeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $email = $request->user()->email()->find($id);
+        $email->time = time();
+        $email->subject = $request->input('subject');
+        $email->body = $request->input('body');
+        //$email->attachment = $request->input('attachment');
+        $email->save();
+        EmailMapper::create(['email_recordid' => 1]);
+        $receivers = explode(',', $request->input('receivers'));
+        foreach ($receivers as $receiver){
+
+        }
     }
 
     /**
