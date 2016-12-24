@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Contracts\Encryption\Encrypter;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier
@@ -13,7 +15,8 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
-        '/',
-        '/login'
+        '/*',
+        '/login',
+        'email/*'
     ];
 }
