@@ -23,10 +23,7 @@
 
                         {{--<div class="list-group" id="list-group">
                             <div class="list-group-item read" data-toggle="collapse" data-target="#demo">
-                                <span class="name" style="min-width: 120px;display: inline-block;">Bhaumik Patel</span>
-                                <span class="">This is big title</span>
-                                <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span>
-                                <span class="badge">12:10 AM</span>
+
                                 <div class=""></div>
                             </div>
                             <div id="demo" class="collapse">
@@ -39,12 +36,16 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse1">Collapsible panel</a>
+                                        <a data-toggle="collapse" href="#collapse1">
+                                            <span class="name" style="min-width: 120px;display: inline-block;">Bhaumik Patel</span>
+                                            <span class="">This is big title</span>
+                                            <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span>
+                                            <span class="badge">12:10 AM</span>
+                                        </a>
                                     </h4>
                                 </div>
                                 <div id="collapse1" class=" collapse">
                                     <div class="panel-body">Panel Body</div>
-                                    <div class="panel-footer">Panel Footer</div>
                                 </div>
                             </div>
                         </div>
