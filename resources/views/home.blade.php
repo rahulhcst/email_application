@@ -73,7 +73,7 @@
         </div>
     </div>
     <div id="compose_window">
-        <h4 class="header">New Message<span class="pull-right"><i onclick="$(this).parents().hide(100)" class="fa fa-times-circle" aria-hidden="true"></i></span></h4>
+        <h4 class="header">New Message<span class="pull-right"><i onclick="Gmail.saveToDraft(this);" class="fa fa-times-circle" aria-hidden="true"></i></span></h4>
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="email">To</label>
@@ -85,10 +85,10 @@
             </div>
             <div class="form-group">
                 <label for="subject">Body</label>
-                <textarea class="form-control" id="subject" placeholder="" rows="5"></textarea>
+                <textarea class="form-control" id="email_body" placeholder=""  rows="5"></textarea>
             </div>
             <div class="form-group">
-                <div class="btn btn-primary">Send</div>
+                <div class="btn btn-primary" id="sendMail" onclick="Gmail.sendMail()">Send</div>
             </div>
         </form>
     </div>
