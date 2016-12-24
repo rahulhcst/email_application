@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Email;
+use App\User;
 use Illuminate\Http\Request;
 
 class InboxController extends Controller
@@ -70,6 +71,8 @@ class InboxController extends Controller
                 {
                     $mail['subject'] = $emailRecord->subject;
                     $mail['body'] = $emailRecord->body;
+                    $user = User::find($emailRecord->userid);
+                    $mail['name'] = $user->name;
                     array_push($mails, $mail);
                 }
             }
