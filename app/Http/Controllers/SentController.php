@@ -49,6 +49,40 @@ class SentController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll(Request $request)
+    {
+        $records = $request->user()->emailRecord()->where('category_id', 2)->get();
+
+        //var_dump($records);
+        $mails = [];
+
+        if (!empty($records))
+        {
+            foreach ($records as $record)
+            {
+                $emailRecord = Email::find($record->email_id);
+                if (!empty($emailRecord))
+                {
+                    $mail['id'] = $emailRecord->id;
+                    $mail['subject'] = $emailRecord->subject;
+                    //$mail['body'] = htmlspecialchars($emailRecord->body);
+                    $mail['body'] = nl2br($emailRecord->body);
+                    //$user = User::find($emailRecord->userid);
+                    $user = User::find($mail->user_id);
+                    $mail['name'] = $user->name;
+                    $mail['time'] = $emailRecord->updated_at;
+                    array_push($mails, $mail);
+                }
+            }
+        }
+        return response()->json($mails);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
