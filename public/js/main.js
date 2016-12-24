@@ -12,7 +12,7 @@
        currentMailID:null,
        init:function () {
            var self=this;
-           //self.getEmails();
+           self.getEmails();
            self.$compose.click(function () {
                self.$compose_window.show(100);
                $.ajax({
@@ -29,10 +29,11 @@
            var self=this;
            $.ajax({
                method: "POST",
-               url: "email/all"
+               url: "email/inbox"
            })
                .done(function( response ) {
-                   self.fillInbox(response.inbox);
+                   console.log(response);
+                   //self.fillInbox(response.inbox);
                });
        },
         fillInbox:function (data) {
