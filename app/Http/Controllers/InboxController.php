@@ -73,6 +73,7 @@ class InboxController extends Controller
                     $mail['body'] = $emailRecord->body;
                     $user = User::find($emailRecord->userid);
                     $mail['name'] = $user->name;
+                    $mail['time'] = $emailRecord->updated_at;
                     array_push($mails, $mail);
                 }
             }
