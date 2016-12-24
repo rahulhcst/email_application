@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\EmailMapper;
+use App\EmailRecord;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -109,7 +110,9 @@ class EmailComposeController extends Controller
         $email->body = $request->input('body');
         //$email->attachment = $request->input('attachment');
         $email->save();
-        EmailMapper::create(['email_recordid' => 1]);
+        EmailRecord::create(['mailid' => $email->id, 'userid' => $request->user()->id, 'category' => 2]);
+
+        //EmailMapper::create(['email_recordid' => 1]);
         $receivers = explode(',', $request->input('receivers'));
         foreach ($receivers as $receiver){
 

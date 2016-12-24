@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'CreateEmailCategoryTable' => $baseDir . '/database/migrations/2016_12_23_130556_create_email_category_table.php',
     'CreateEmailRecordTable' => $baseDir . '/database/migrations/2016_12_23_180058_create_email_record_table.php',
-    'CreateEmailRecordsTable' => $baseDir . '/database/migrations/2016_12_24_085249_create_email_records_table.php',
     'CreateEmailsTable' => $baseDir . '/database/migrations/2016_12_23_124010_create_emails_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateUsersEmailMapper' => $baseDir . '/database/migrations/2016_12_23_133828_create_users_email_mapper.php',
