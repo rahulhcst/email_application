@@ -16,7 +16,7 @@
            self.$compose.click(function () {
                self.$compose_window.show(100);
                $.ajax({
-                   method: "POST",
+                   method: "GET",
                    url: "email/new"
                })
                    .done(function( response ) {
