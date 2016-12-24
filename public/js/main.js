@@ -9,6 +9,7 @@
        $subject:$("#subject"),
        $email_body:$("#email_body"),
        $panel_group:$('#panel-group'),
+       $mail_type:$("#mail_type"),
        currentMailID:null,
        init:function () {
            var self=this;
@@ -21,8 +22,11 @@
                })
                    .done(function( response ) {
                        self.currentMailID=response.id;
-                       alert(self.currentMailID);
+                       //alert(self.currentMailID);
                    });
+           });
+           self.$mail_type.click(function (ev) {
+               console.log(this);
            });
        },
        getEmails:function () {
@@ -39,7 +43,7 @@
         fillInbox:function (data) {
            var self=this;
             for(var i=0;i<data.length;i++){
-                data[i].body=data[i].body.replace(/↵*/, "<br/>");
+                //data[i].body=data[i].body.replace(/↵/g, "<br/>");
              self.$panel_group.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
@@ -66,6 +70,7 @@
            })
                .done(function( msg ) {
                    alert( "Data Saved: " + msg );
+                   self.$compose_window.hide();
                });
        },
        saveToDraft:function (el) {
@@ -77,7 +82,8 @@
                data: { id: self.currentMailID, email: self.$email.val(),subject:self.$subject.val(),mail_body:self.$email_body }
            })
                .done(function( msg ) {
-                   alert( "Data Saved: " + msg );
+                   alert( "Saved to Drafts " + msg );
+                   self.$compose_window.hide();
                });
 
        }
