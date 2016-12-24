@@ -39,6 +39,7 @@
         fillInbox:function (data) {
            var self=this;
             for(var i=0;i<data.length;i++){
+                data[i].body=data[i].body.replace(/↵/g, "<br/>");
              self.$panel_group.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
