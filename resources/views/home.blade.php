@@ -74,7 +74,7 @@
     </div>
     <div id="compose_window">>
         <h4 class="header">New Message</h4>
-        <tosubject,body,>
+        <to,subject,body,>
         <form>
 
         </form>
