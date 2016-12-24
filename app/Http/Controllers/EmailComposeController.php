@@ -81,7 +81,7 @@ class EmailComposeController extends Controller
 
         if ($receiverId)
         {
-            $isCreated = EmailRecord::create(['mail_id' => $request->input('id'), 'user_id' => $receiverId, 'category_id' => 1, 'timestamp' => time()]);
+            $isCreated = EmailRecord::create(['email_id' => $request->input('id'), 'user_id' => $receiverId, 'category_id' => 1, 'timestamp' => time()]);
 
             return true;
         }
