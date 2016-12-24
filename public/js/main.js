@@ -17,8 +17,9 @@ $(document).ready(function () {
                    method: "POST",
                    url: "email/new"
                })
-                   .done(function( id ) {
-                       self.currentMailID=id;
+                   .done(function( response ) {
+                       self.currentMailID=response.id;
+                       alert(self.currentMailID);
                    });
            });
        },
@@ -38,7 +39,7 @@ $(document).ready(function () {
            $.ajax({
                method: "POST",
                url: "",
-               data: { id: self.currentMailID, ema: "Boston" }
+               data: { id: self.currentMailID, email: self.$email.val(),subject:self.$subject.val(),mail_body:self.$email_body }
            })
                .done(function( msg ) {
                    alert( "Data Saved: " + msg );
