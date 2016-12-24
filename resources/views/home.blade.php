@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-    <div id="compose_window">>
+    <div id="compose_window">
         <h4 class="header">New Message</h4>
         <form class="form-horizontal">
             <div class="form-group">
