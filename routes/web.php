@@ -32,4 +32,4 @@ Route::group(['prefix' => 'email', 'middleware' => 'auth'],function (){
 
 });
 
-Route::get('inbox', 'InboxController@');
+Route::get('inbox', 'InboxController@showAll');
