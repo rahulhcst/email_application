@@ -115,7 +115,7 @@ class EmailComposeController extends Controller
     public function update(Request $request, $id)
     {
         $email = $request->user()->email()->find($id);
-        $email->time = time();
+        $email->timestamp = time();
         $email->subject = $request->input('subject');
         $email->body = $request->input('body');
         //$email->attachment = $request->input('attachment');
