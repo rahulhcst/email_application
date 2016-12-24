@@ -33,7 +33,7 @@
            })
                .done(function( response ) {
                    console.log(response);
-                   self.fillInbox(response.inbox);
+                   self.fillInbox(response);
                });
        },
         fillInbox:function (data) {
