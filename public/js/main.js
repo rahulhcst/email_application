@@ -33,13 +33,14 @@
            })
                .done(function( response ) {
                    console.log(response);
-                   //self.fillInbox(response.inbox);
+                   self.fillInbox(response.inbox);
                });
        },
         fillInbox:function (data) {
+           var self=this;
             for(var i=0;i<data.length;i++){
                 data[i].username="Rahul";
-             this.$panel_group.append('<div class="panel panel-default"> ' +
+             self.$panel_group.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
                  '<a data-toggle="collapse" href="#collapse1"> ' +
