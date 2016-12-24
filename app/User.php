@@ -27,13 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function emails()
+    public function email()
     {
-        $this->hasMany(Email::class, 'userid', 'id');
+        return $this->hasMany(Email::class, 'userid', 'id');
     }
 
     public function emailRecord()
     {
-        $this->hasMany(EmailRecord::class, 'userid', 'id');
+        return $this->hasMany(EmailRecord::class, 'userid', 'id');
     }
 }

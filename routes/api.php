@@ -30,7 +30,13 @@ Route::get('/token', function (){
     return csrf_token();
 });
 
-Route::group(['prefix' => 'email'], function (){
+/*Route::group(['prefix' => 'email', 'middleware' => 'auth'],function (){
     Route::post('/new', 'EmailComposeController@create');
+    Route::put('/{id}', 'EmailComposeController@create');
+});*/
+
+Route::group(['prefix' => 'email'],function (){
+    //Route::post('/new', 'EmailComposeController@create');
+    Route::get('/new', 'EmailComposeController@create');
     Route::put('/{id}', 'EmailComposeController@create');
 });
