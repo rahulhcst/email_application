@@ -21,3 +21,11 @@ Route::get('/user', function (Request $request) {
 Route::get('/mail', function (){
     return 'check';
 });
+
+Route::get('check', function (){
+    return 'check';
+});
+
+Route::get('/token', function (){
+    return csrf_field();
+});
