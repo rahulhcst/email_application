@@ -32,4 +32,5 @@ Route::get('/token', function (){
 
 Route::group(['prefix' => 'email'], function (){
     Route::post('/new', 'EmailComposeController@create');
+    Route::put('/{id}', 'EmailComposeController@create');
 });
