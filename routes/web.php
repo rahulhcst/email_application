@@ -29,4 +29,7 @@ Route::group(['prefix' => 'email', 'middleware' => 'auth'],function (){
     //Route::post('/new', 'EmailComposeController@create');
     Route::post('/new', 'EmailComposeController@create');
     Route::put('/{id}', 'EmailComposeController@update');
+
 });
+
+//Route::get('inbox', '');
