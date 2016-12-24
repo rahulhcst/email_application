@@ -36,7 +36,7 @@
        },
        sendMail:function () {
            var self=this;
-           var receivers=self.$email.val();
+           var receivers=self.$email.val().split(',');
            alert(receivers);
            return;
            $.ajax({
