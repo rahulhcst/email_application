@@ -8,6 +8,7 @@
        $email:$("#email"),
        $subject:$("#subject"),
        $email_body:$("#email_body"),
+       $list_group:$('#list-group'),
        currentMailID:null,
        init:function () {
            var self=this;
@@ -25,20 +26,29 @@
            });
        },
        getEmails:function () {
+           var self=this;
            $.ajax({
                method: "POST",
                url: "email/all"
            })
                .done(function( response ) {
-                   self.currentMailID=response.id;
-                   alert(self.currentMailID);
+                   self.fillInbox(response.inbox);
                });
        },
+        fillInbox:function (data) {
+            for(var i=0;i<data.length;i++){
+
+             this.$list_group.append('<a href="#" class="list-group-item"> ' +
+                 '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].username+'</span> ' +
+                 '<span class="">'+data[i].subject+'</span> ' +
+                 '<span class="text-muted" style="font-size: 11px;">'+data[i].body+'</span> ' +
+                 '<span class="badge">'+data[i].time+'</span>'+
+            '</a>');
+            }
+        },
        sendMail:function () {
            var self=this;
            var receivers=self.$email.val().split(',');
-           alert(receivers);
-           return;
            $.ajax({
                method: "PUT",
                url: "/email/"+self.currentMailID,
