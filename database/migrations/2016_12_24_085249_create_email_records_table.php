@@ -15,6 +15,10 @@ class CreateEmailRecordsTable extends Migration
     {
         Schema::create('email_records', function (Blueprint $table) {
             $table->increments('id');
+            $table->bigInteger('email_id');
+            $table->bigInteger('user_id');
+            $table->bigInteger('category_id');
+            $table->bigInteger('parent_email_id');
             $table->timestamps();
         });
     }
