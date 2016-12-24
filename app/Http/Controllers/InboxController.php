@@ -69,8 +69,10 @@ class InboxController extends Controller
                 $emailRecord = Email::find($record->email_id);
                 if (!empty($emailRecord))
                 {
+                    $mail['id'] = $emailRecord->id;
                     $mail['subject'] = $emailRecord->subject;
-                    $mail['body'] = htmlspecialchars($emailRecord->body);
+                    //$mail['body'] = htmlspecialchars($emailRecord->body);
+                    $mail['body'] = nl2br($emailRecord->body);
                     $user = User::find($emailRecord->userid);
                     $mail['name'] = $user->name;
                     $mail['time'] = $emailRecord->updated_at;
