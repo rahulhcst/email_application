@@ -45,7 +45,7 @@
                  '<a data-toggle="collapse" href="#collapse1"> ' +
                  '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].name+'</span> ' +
                  '<span class="">'+data[i].subject+'</span> ' +
-                 '<span class="badge pull-right">'+data[i].time+'</span> ' +
+                 '<span class="badge pull-right">'+data[i].time.date+'</span> ' +
                  '</a> ' +
                  '</h4>'+
                  '</div> ' +
