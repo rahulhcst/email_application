@@ -24,56 +24,21 @@
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="home">
                         <div class="list-group">
-                            <a href="#" class="list-group-item">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                    </label>
-                                </div>
-                                <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
-                                display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
-                                        class="badge">12:10 AM</span> <span class="pull-right"><span class="glyphicon glyphicon-paperclip">
-                                </span></span></a><a href="#" class="list-group-item">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                    </label>
-                                </div>
-                                <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
-                                        display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
-                                        class="badge">12:10 AM</span> <span class="pull-right"><span class="glyphicon glyphicon-paperclip">
-                                        </span></span></a><a href="#" class="list-group-item read">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                    </label>
-                                </div>
-                                <span class="glyphicon glyphicon-star"></span><span class="name" style="min-width: 120px;
-                                                display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
-                                        class="badge">12:10 AM</span> <span class="pull-right"><span class="glyphicon glyphicon-paperclip">
-                                                </span></span></a>
+                            <a href="#" class="list-group-item read">
+                                <span class="name" style="min-width: 120px;display: inline-block;">Bhaumik Patel</span>
+                                <span class="">This is big title</span>
+                                <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span>
+                                <span class="badge">12:10 AM</span>
+                                <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span>
+                            </a>
                         </div>
                     </div>
-                    <div class="tab-pane fade in" id="profile">
-                        <div class="list-group">
-                            <div class="list-group-item">
-                                <span class="text-center">This tab is empty.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade in" id="messages">
-                        ...</div>
-                    <div class="tab-pane fade in" id="settings">
-                        This tab is empty.</div>
                 </div>
             </div>
         </div>
     </div>
     <div id="compose_window">
-        <h4 class="header">New Message<span class="pull-right"><i onclick="Gmail.saveToDraft(this);" class="fa fa-times-circle" aria-hidden="true"></i></span></h4>
+        <h4 class="header">New Message<span class="pull-right"><span class="glyphicon glyphicon-search" onclick="Gmail.saveToDraft(this);" aria-hidden="true"></span></span></h4>
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="email">To</label>

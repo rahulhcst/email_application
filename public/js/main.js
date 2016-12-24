@@ -1,7 +1,7 @@
 /**
  * Created by root on 12/24/16.
  */
-$(document).ready(function () {
+
    var Gmail={
        $compose:$("#compose"),
        $compose_window:$("#compose_window"),
@@ -11,6 +11,7 @@ $(document).ready(function () {
        currentMailID:null,
        init:function () {
            var self=this;
+           //self.getEmails();
            self.$compose.click(function () {
                self.$compose_window.show(100);
                $.ajax({
@@ -22,6 +23,16 @@ $(document).ready(function () {
                        alert(self.currentMailID);
                    });
            });
+       },
+       getEmails:function () {
+           $.ajax({
+               method: "POST",
+               url: "email/all"
+           })
+               .done(function( response ) {
+                   self.currentMailID=response.id;
+                   alert(self.currentMailID);
+               });
        },
        sendMail:function () {
            $.ajax({
@@ -49,4 +60,3 @@ $(document).ready(function () {
 
    };
    Gmail.init();
-});
