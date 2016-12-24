@@ -29,7 +29,7 @@
            var self=this;
            $.ajax({
                method: "GET",
-               url: "email/inbox"
+               url: "/inbox"
            })
                .done(function( response ) {
                    console.log(response);
