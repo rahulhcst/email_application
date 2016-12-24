@@ -35,10 +35,14 @@
                });
        },
        sendMail:function () {
+           var self=this;
+           var receivers=self.$email.val();
+           alert(receivers);
+           return;
            $.ajax({
-               method: "POST",
-               url: "",
-               data: { name: "John", location: "Boston" }
+               method: "PUT",
+               url: "/email/"+self.currentMailID,
+               data: { subject: self.$subject.val(), body: self.$email_body.val(),attachments:"",receivers:receivers}
            })
                .done(function( msg ) {
                    alert( "Data Saved: " + msg );

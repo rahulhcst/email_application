@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-sm-3 col-md-2">
+            <div class="col-sm-3 col-md-2" style="border-right: 1px solid #ccc">
                 <a href="#" class="btn btn-danger btn-sm btn-block" role="button" id="compose">COMPOSE</a>
                 <hr />
                 <ul class="nav nav-pills nav-stacked">
