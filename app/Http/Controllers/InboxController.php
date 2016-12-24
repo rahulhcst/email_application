@@ -49,6 +49,21 @@ class InboxController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll(Request $request)
+    {
+        $records = $request->user()->emailRecord()->where('category_id', 1)->get();
+
+        if (!empty($records))
+        {
+
+        }
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
