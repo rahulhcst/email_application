@@ -58,7 +58,9 @@
        },
         fillInbox:function (data) {
            var self=this;
-            for(var i=0;i<data.length;i++){
+           var emailLength=data.length;
+            self.$mail_type.find("#inbox span").text(emailLength);
+            for(var i=0;i<emailLength;i++){
                 //data[i].body=data[i].body.replace(/↵/g, "<br/>");
              self.$panel_group_inbox.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
@@ -113,7 +115,7 @@
        },
        saveToDraft:function (el) {
            var self=this;
-           $(el).parents().hide(100);
+           $(el).parents(self.$compose_window).hide(100);
            $.ajax({
                method: "POST",
                url: "",
