@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Email;
+use App\User;
 use Illuminate\Http\Request;
 
 class SentController extends Controller
@@ -67,13 +69,17 @@ class SentController extends Controller
                 $emailRecord = Email::find($record->email_id);
                 if (!empty($emailRecord))
                 {
+                    /*var_dump($emailRecord);
+                    die;*/
+                    
                     $mail['id'] = $emailRecord->id;
                     $mail['subject'] = $emailRecord->subject;
                     //$mail['body'] = htmlspecialchars($emailRecord->body);
                     $mail['body'] = nl2br($emailRecord->body);
                     //$user = User::find($emailRecord->userid);
-                    $user = User::find($mail->user_id);
-                    $mail['name'] = $user->name;
+                    //$user = User::find($record->user_id);
+                    //$mail['name'] = $user->name;
+                    $mail['name'] = $record->email_id;
                     $mail['time'] = $emailRecord->updated_at;
                     array_push($mails, $mail);
                 }
