@@ -6,7 +6,7 @@
  * Time: 9:20 AM
  */
 
-namespace App\Claases;
+namespace App\Classes;
  use App\Receiver;
  use App\User;
  use Illuminate\Http\Request;
