@@ -31,7 +31,7 @@ class EmailComposeController extends Controller
      */
     public function create(Request $request)
     {
-        $isCreated = $request->user()->email_thread()->create(['timestamp' => time()]);
+        $isCreated = $request->user()->emailThread()->create(['timestamp' => time()]);
         if (is_object($isCreated))
             return response()->json($isCreated);
         return response('error', 500);

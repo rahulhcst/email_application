@@ -55,7 +55,7 @@ class IncomingMailHandler
         return $emailRecord;
     }
 
-    public function handleIncomingMail($mailParams)
+    public function handleIncomingMail($mailParams = false)
     {
         $emailThread = $this->insertInEmailThread($mailParams);
 
