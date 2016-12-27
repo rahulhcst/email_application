@@ -65,15 +65,15 @@
              self.$panel_group_inbox.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
-                 '<a data-toggle="collapse" href="#mail'+data[i].id+'"> ' +
-                 '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].name+'</span> ' +
-                 '<span class="">'+data[i].subject+'</span> ' +
-                 '<span class="badge pull-right">'+data[i].time.date+'</span> ' +
+                 '<a data-toggle="collapse" href="#mail'+data[i].thread.id+'"> ' +
+                 '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].thread.id+'</span> ' +
+                 '<span class="">'+data[i].thread.subject+'</span> ' +
+                 '<span class="badge pull-right">'+data[i].thread.updated_at+'</span> ' +
                  '</a> ' +
                  '</h4>'+
                  '</div> ' +
-                 '<div id="mail'+data[i].id+'" class=" collapse"> ' +
-                 '<div class="panel-body">'+data[i].body+'</div> ' +
+                 '<div id="mail'+data[i].thread.id+'" class=" collapse"> ' +
+                 '<div class="panel-body">'+data[i]+'</div> ' +
                  '</div> ' +
                  '</div>');
             }
