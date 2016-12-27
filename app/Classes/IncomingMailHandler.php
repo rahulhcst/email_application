@@ -30,6 +30,7 @@ class IncomingMailHandler
 
     public function handleIncomingMail($mailParams)
     {
+        //email thread will also get created
         $emailRecord = $this->user->emailRecord()->create([
             'subject' => $mailParams['subject'],
             'refernces' => $mailParams['id'],
