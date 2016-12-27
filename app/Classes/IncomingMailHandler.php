@@ -6,7 +6,7 @@
  * Time: 9:04 AM
  */
 
-namespace App\Claases;
+namespace App\Classes;
 
 use App\Sender;
 use App\User;

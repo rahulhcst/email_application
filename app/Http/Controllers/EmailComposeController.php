@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Claases\IncomingMailHandler;
-use App\Claases\OutgoingMailHandler;
+use App\Classes\IncomingMailHandler;
+use App\Classes\OutgoingMailHandler;
 use App\EmailMapper;
 use App\EmailRecord;
 use App\Receiver;

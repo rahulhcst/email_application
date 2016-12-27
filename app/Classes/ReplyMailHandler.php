@@ -6,7 +6,7 @@
  * Time: 6:07 PM
  */
 
-namespace App\Claases;
+namespace App\Classes;
 
 
 use App\EmailThread;

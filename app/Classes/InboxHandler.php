@@ -6,7 +6,7 @@
  * Time: 12:55 PM
  */
 
-namespace App\Claases;
+namespace App\Classes;
 
 use App\EmailRecord;
 use App\User;
