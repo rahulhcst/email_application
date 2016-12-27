@@ -14,12 +14,13 @@ use Illuminate\Http\Request;
 
 class IncomingMailHandler
 {
-    private $user;
+    //private $user;
     private $request;
 
-    public function __construct(User $user, Request $request)
+    //public function __construct(User $user, Request $request)
+    public function __construct(Request $request)
     {
-        $this->user = $user;
+        //$this->user = $user;
         $this->request = $request;
     }
 
