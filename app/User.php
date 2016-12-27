@@ -32,9 +32,9 @@ class User extends Authenticatable
         return $this->hasMany(Email::class, 'userid', 'id');
     }
 
-    public function email_thread()
+    public function emailThread()
     {
-        return $this->hasMany(Email::class, 'userid', 'id');
+        return $this->hasMany(EmailThread::class, 'user_id', 'id');
     }
 
     public function emailRecord()

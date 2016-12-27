@@ -81,6 +81,14 @@ class EmailComposeController extends Controller
 
         if ($receiverId)
         {
+            
+        }
+
+
+        die;
+
+        if ($receiverId)
+        {
             $isCreated = EmailRecord::create(['email_id' => $emailId, 'user_id' => $receiverId, 'category_id' => 1, 'timestamp' => time()]);
 
             return true;
@@ -132,16 +140,21 @@ class EmailComposeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $email = $request->user()->email()->find($id);
-        $email->timestamp = time();
+        $emailThread = $request->user()->emailThread()->find($id);
         //$email->subject = htmlspecialchars($request->input('subject'));
-        $email->subject = $request->input('subject');
-        $email->body = $request->input('body');
+        $emailThread->subject = $request->input('subject');
         //$email->attachment = $request->input('attachment');
-        $email->save();
-        EmailRecord::create(['email_id' => $email->id, 'user_id' => $request->user()->id, 'category_id' => 2, 'timestamp' => time()]);
+        $emailThread->timestamp = time();
+        $emailThread->sent = true;
+        $emailThread->save();
+        $emailRecordSender = $request->user()->emailRecord()->create(['thread_id' => $emailThread->id,
+            'category_id' => 2,
+            'mail_body' => $request->input('mail_body'),
+            'attachment' => false,
+            'timestamp' => time()
+        ]);
+        //EmailRecord::create(['email_id' => $email->id, 'user_id' => $request->user()->id, 'category_id' => 2, 'timestamp' => time()]);
 
-        //EmailMapper::create(['email_recordid' => 1]);
         $receivers = $request->input('receivers');
         foreach ($receivers as $receiver){
             $this->insertEmailRecord($id, $receiver);
