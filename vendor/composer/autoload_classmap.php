@@ -14,6 +14,7 @@ return array(
     'CreateEmailsTable' => $baseDir . '/database/migrations/2016_12_23_124010_create_emails_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateReceiversTable' => $baseDir . '/database/migrations/2016_12_27_011511_create_receivers_table.php',
+    'CreateSenderTable' => $baseDir . '/database/migrations/2016_12_27_035318_create_sender_table.php',
     'CreateUsersEmailMapper' => $baseDir . '/database/migrations/2016_12_23_133828_create_users_email_mapper.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
