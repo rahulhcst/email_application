@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Claases\IncomingMailHandler;
 use App\EmailMapper;
 use App\EmailRecord;
+use App\Receiver;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,42 +77,20 @@ class EmailComposeController extends Controller
         return false;
     }
 
+    //private function
+
     private function insertEmailRecord($emailId, $receiver)
     {
         $receiverId = $this->getUserId($receiver);
 
         if ($receiverId)
         {
-            
+            $handler = new IncomingMailHandler($receiverId);
+            Receiver::create(['to_user_id' => $receiverId, 'timestamp' => time()]);
+            $handler->handleIncomingMail($emailId);
         }
-
 
         die;
-
-        if ($receiverId)
-        {
-            $isCreated = EmailRecord::create(['email_id' => $emailId, 'user_id' => $receiverId, 'category_id' => 1, 'timestamp' => time()]);
-
-            return true;
-        }
-
-        return false;
-
-        if ($receiverId)
-        {
-            $isCreated = $request->user()->senderEmailRecords->create([
-                'mailid' => $request->input('id'),
-                'receiverid' => $receiverId,
-            ]);
-
-            if (is_object($isCreated))
-            {
-                EmailMapper::create(['email_recordid' => $isCreated->id, 'userid' => $receiverId, 'categoryid' => 1, 'timestamp' => time()]);
-            }
-
-            return true;
-        }
-        return false;
     }
 
     /**
