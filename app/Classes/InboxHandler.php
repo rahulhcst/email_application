@@ -67,13 +67,20 @@ class InboxHandler
         $emailThreads = $this->user->emailThread()->where('inbox', true)->orderBy('id')->get();
         if (!empty($emailThreads))
         {
-            foreach ($emailThreads as $emailThread)
+            foreach ($emailThreads as $k => $emailThread)
             {
+                //$emailThread->mails = [];
+                $inbox[$k]['thread'] = $emailThread;
                 $emailRecords = EmailRecord::where('thread_id', $emailThread->id)->orderBy('id')->get();
-                array_push($inbox, $emailRecords);
+                //array_push($inbox, $emailRecords);
+                //array_push($emailThread->mails, $emailRecords);
+                //$emailThread->mails = $emailRecords;
+                $inbox[$k]['mails'] = $emailRecords;
             }
-        }
+        }/*else
+            $emailThreads = [];*/
         return $inbox;
+        //$emailThreads;
     }
 
     public function getMails()
