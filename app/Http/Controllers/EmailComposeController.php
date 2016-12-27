@@ -28,7 +28,7 @@ class EmailComposeController extends Controller
      */
     public function create(Request $request)
     {
-        $isCreated = $request->user()->email()->create(['timestamp' => time()]);
+        $isCreated = $request->user()->email_thread()->create(['timestamp' => time()]);
         if (is_object($isCreated))
             return response()->json($isCreated);
         return response('error', 500);
@@ -112,6 +112,24 @@ class EmailComposeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /*public function update(Request $request, $id)
+    {
+        $email = $request->user()->email()->find($id);
+        $email->timestamp = time();
+        //$email->subject = htmlspecialchars($request->input('subject'));
+        $email->subject = $request->input('subject');
+        $email->body = $request->input('body');
+        //$email->attachment = $request->input('attachment');
+        $email->save();
+        EmailRecord::create(['email_id' => $email->id, 'user_id' => $request->user()->id, 'category_id' => 2, 'timestamp' => time()]);
+
+        //EmailMapper::create(['email_recordid' => 1]);
+        $receivers = $request->input('receivers');
+        foreach ($receivers as $receiver){
+            $this->insertEmailRecord($id, $receiver);
+        }
+    }*/
+
     public function update(Request $request, $id)
     {
         $email = $request->user()->email()->find($id);
