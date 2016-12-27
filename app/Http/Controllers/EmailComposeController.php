@@ -109,7 +109,7 @@ class EmailComposeController extends Controller
             $user = User::where('email', $receiver);
             if ($receiverId)
             {
-                $imh = new IncomingMailHandler($user);
+                $imh = new IncomingMailHandler($user, $request);
                 $imh->handleIncomingMail();
             }
         }
