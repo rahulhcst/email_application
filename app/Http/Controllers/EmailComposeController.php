@@ -104,7 +104,7 @@ class EmailComposeController extends Controller
 
         $receivers = $request->input('receivers');
         foreach ($receivers as $receiver){
-            $this->insertEmailRecord($id, $receiver);
+            //$this->insertEmailRecord($id, $receiver);
             $receiverId = $this->getUserId($receiver);
             $user = User::where('email', $receiver);
             if ($receiverId)
