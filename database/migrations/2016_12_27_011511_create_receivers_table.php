@@ -15,6 +15,10 @@ class CreateReceiversTable extends Migration
     {
         Schema::create('receivers', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('record_id');
+            $table->integer('to_user_id');
+            $table->boolean('isRead')->default(false);
+            $table->bigInteger('timestamp');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class CreateEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emails', function (Blueprint $table) {
+        /*Schema::create('emails', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('userid');
             $table->bigInteger('timestamp');
@@ -21,7 +21,7 @@ class CreateEmailsTable extends Migration
             $table->string('body', 8191)->nullable();
             $table->boolean('attachement')->default(false);
             $table->timestamps();
-        });
+        });*/
     }
 
     /**

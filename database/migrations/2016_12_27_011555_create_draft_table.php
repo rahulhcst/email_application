@@ -15,6 +15,9 @@ class CreateDraftTable extends Migration
     {
         Schema::create('draft', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('record_id');
+            $table->integer('to_user_id');
+            $table->integer('timestamp');
             $table->timestamps();
         });
     }

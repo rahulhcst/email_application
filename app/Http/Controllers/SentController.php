@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Email;
+use App\EmailRecord;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -67,6 +68,7 @@ class SentController extends Controller
             foreach ($records as $record)
             {
                 $emailRecord = Email::find($record->email_id);
+                $sentUsers = EmailRecord::where(['email_id' => $record->email_id, 'category_id' => 1]);
                 if (!empty($emailRecord))
                 {
                     /*var_dump($emailRecord);

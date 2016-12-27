@@ -13,7 +13,7 @@ class CreateEmailRecordTable extends Migration
      */
     public function up()
     {
-        Schema::create('email_record', function (Blueprint $table) {
+        /*Schema::create('email_record', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('mailid');
             $table->bigInteger('senderid');
@@ -21,7 +21,7 @@ class CreateEmailRecordTable extends Migration
             $table->bigInteger('previous')->nullable();
             $table->bigInteger('next')->nullable();
             $table->timestamps();
-        });
+        });*/
     }
 
     /**

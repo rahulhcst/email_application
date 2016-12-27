@@ -15,6 +15,11 @@ class CreateEmailThreadTable extends Migration
     {
         Schema::create('email_thread', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->string('subject', 1024)->nullable();
+            $table->boolean('inbox')->default(false);
+            $table->boolean('sent')->default(false);
+            $table->bigInteger('timestamp');
             $table->timestamps();
         });
     }

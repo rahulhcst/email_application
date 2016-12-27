@@ -13,7 +13,7 @@ class CreateUsersEmailMapper extends Migration
      */
     public function up()
     {
-        Schema::create('email_mapper', function (Blueprint $table) {
+        /*Schema::create('email_mapper', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('email_recordid');
             $table->bigInteger('userid');
@@ -27,9 +27,9 @@ class CreateUsersEmailMapper extends Migration
             $table->bigInteger('next_id')->nullable();
             $table->bigInteger('reply_id')->nullable();
             $table->bigInteger('timestamp')->nullable();
-            $table->boolean('is_read')->default(false);*/
+            $table->boolean('is_read')->default(false);*\/
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
