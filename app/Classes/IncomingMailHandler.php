@@ -8,7 +8,7 @@
 
 namespace App\Claases;
 
-use App\Receiver;
+use App\Sender;
 use App\User;
 
 class IncomingMailHandler
@@ -22,21 +22,45 @@ class IncomingMailHandler
 
     private function receive($emailRecord)
     {
-        Receiver::create([
+        Sender::create([
             'from_user_id' => $emailRecord->id,
             'timestamp' => time()
         ]);
     }
 
-    public function handleIncomingMail($mailParams)
+    private function insertInEmailThread($mailParams)
     {
-        //email thread will also get created
-        $emailRecord = $this->user->emailRecord()->create([
+        $emailThread = $this->user->emailThread()->create([
             'subject' => $mailParams['subject'],
-            'refernces' => $mailParams['id'],
             'timestamp' => time(),
             'inbox' => true
         ]);
+
+        return $emailThread;
+    }
+
+    private function insertInEmailRecord($mailParams)
+    {
+        $emailRecord = $this->user->emailRecord()->create([
+            'thread_id' => $mailParams['id'],
+            'subject' => $mailParams['subject'],
+            'category_id' => 1,
+            'mail_body' => $mailParams['mail_body'],
+            'attachment' => false,
+            'references' => $mailParams['id'],
+            'timestamp' => time(),
+            'inbox' => true
+        ]);
+
+        return $emailRecord;
+    }
+
+    public function handleIncomingMail($mailParams)
+    {
+        $emailThread = $this->insertInEmailThread($mailParams);
+
+        if (is_object($emailThread))
+            $emailRecord = $this->insertInEmailRecord($mailParams);
 
         if (is_object($emailRecord))
         {

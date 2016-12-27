@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Claases\IncomingMailHandler;
+use App\Claases\OutgoingMailHandler;
 use App\EmailMapper;
 use App\EmailRecord;
 use App\Receiver;
@@ -77,8 +78,6 @@ class EmailComposeController extends Controller
         return false;
     }
 
-    //private function
-
     private function insertEmailRecord($emailId, $receiver)
     {
         $receiverId = $this->getUserId($receiver);
@@ -89,8 +88,6 @@ class EmailComposeController extends Controller
             Receiver::create(['to_user_id' => $receiverId, 'timestamp' => time()]);
             $handler->handleIncomingMail($emailId);
         }
-
-        die;
     }
 
     /**
@@ -100,45 +97,46 @@ class EmailComposeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    /*public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $email = $request->user()->email()->find($id);
-        $email->timestamp = time();
-        //$email->subject = htmlspecialchars($request->input('subject'));
-        $email->subject = $request->input('subject');
-        $email->body = $request->input('body');
-        //$email->attachment = $request->input('attachment');
-        $email->save();
-        EmailRecord::create(['email_id' => $email->id, 'user_id' => $request->user()->id, 'category_id' => 2, 'timestamp' => time()]);
+        $omh = new OutgoingMailHandler($request->user(), $request);
+        $omh->handleOutgoingMail();
 
-        //EmailMapper::create(['email_recordid' => 1]);
         $receivers = $request->input('receivers');
         foreach ($receivers as $receiver){
             $this->insertEmailRecord($id, $receiver);
+            $receiverId = $this->getUserId($receiver);
+            $user = User::where('email', $receiver);
+            if ($receiverId)
+            {
+                $imh = new IncomingMailHandler($user);
+                $imh->handleIncomingMail();
+            }
         }
-    }*/
 
-    public function update(Request $request, $id)
-    {
-        $emailThread = $request->user()->emailThread()->find($id);
+
+
+
+        /*$emailThread = $request->user()->emailThread()->find($id);
         //$email->subject = htmlspecialchars($request->input('subject'));
         $emailThread->subject = $request->input('subject');
         //$email->attachment = $request->input('attachment');
         $emailThread->timestamp = time();
         $emailThread->sent = true;
         $emailThread->save();
-        $emailRecordSender = $request->user()->emailRecord()->create(['thread_id' => $emailThread->id,
+        $emailRecordSender = $request->user()->emailRecord()->create([
+            'thread_id' => $emailThread->id,
             'category_id' => 2,
             'mail_body' => $request->input('mail_body'),
             'attachment' => false,
             'timestamp' => time()
         ]);
-        //EmailRecord::create(['email_id' => $email->id, 'user_id' => $request->user()->id, 'category_id' => 2, 'timestamp' => time()]);
+
 
         $receivers = $request->input('receivers');
         foreach ($receivers as $receiver){
             $this->insertEmailRecord($id, $receiver);
-        }
+        }*/
     }
 
     /**
