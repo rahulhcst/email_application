@@ -63,7 +63,8 @@ class InboxHandler
     private function getMailThread()
     {
         $inbox = [];
-        $emailThreads = $this->user->emailThread()->where('inbox', true)->orderBy('timsetamp', 'desc')->get();
+        //$emailThreads = $this->user->emailThread()->where('inbox', true)->orderBy('timsetamp', 'desc')->get();
+        $emailThreads = $this->user->emailThread()->where('inbox', true)->orderBy('id')->get();
         if (!empty($emailThreads))
         {
             foreach ($emailThreads as $emailThread)

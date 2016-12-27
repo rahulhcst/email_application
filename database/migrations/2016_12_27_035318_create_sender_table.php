@@ -13,8 +13,12 @@ class CreateSenderTable extends Migration
      */
     public function up()
     {
-        Schema::create('sender', function (Blueprint $table) {
+        Schema::create('senders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('record_id');
+            $table->integer('from_user_id');
+            //$table->boolean('isRead')->default(false);
+            $table->bigInteger('timestamp');
             $table->timestamps();
         });
     }

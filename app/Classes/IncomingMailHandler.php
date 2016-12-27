@@ -14,13 +14,12 @@ use Illuminate\Http\Request;
 
 class IncomingMailHandler
 {
-    //private $user;
+    private $user;
     private $request;
 
-    //public function __construct(User $user, Request $request)
-    public function __construct(Request $request)
+    public function __construct(User $user, Request $request)
     {
-        //$this->user = $user;
+        $this->user = $user;
         $this->request = $request;
     }
 
@@ -48,7 +47,7 @@ class IncomingMailHandler
         $emailRecord = $this->user->emailRecord()->create([
             'thread_id' => $emailThread->id,
             'category_id' => 1,
-            'references' => $this->request->references,
+            'references_id' => $this->request->references_id,
             'mail_body' => $this->request->input('mail_body'),
             'attachment' => false,
             'timestamp' => time(),

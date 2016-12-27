@@ -17,6 +17,7 @@ class CreateEmailRecordsTable extends Migration
             $table->increments('id');
             $table->integer('thread_id');
             $table->integer('user_id');
+            $table->integer('references_id')->nullable();
             $table->integer('category_id');
             $table->string('mail_body', 8192)->nullable();
             //$table->bigInteger('parent_email_id')->nullable();

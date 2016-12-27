@@ -106,11 +106,11 @@ class EmailComposeController extends Controller
         foreach ($receivers as $receiver){
             //$this->insertEmailRecord($id, $receiver);
             $receiverId = $this->getUserId($receiver);
-            $user = User::where('email', $receiver);
+            $user = User::where('email', $receiver)->first();
             if ($receiverId)
             {
                 //$imh = new IncomingMailHandler($user, $request);
-                $imh = new IncomingMailHandler($request);
+                $imh = new IncomingMailHandler($user, $request);
                 $imh->handleIncomingMail();
             }
         }

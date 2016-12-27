@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\InboxHandler;
 use App\Email;
 use App\User;
 use Illuminate\Http\Request;
@@ -56,12 +57,15 @@ class InboxController extends Controller
      */
     public function showAll(Request $request)
     {
-        $records = $request->user()->emailRecord()->where('category_id', 1)->get();
+        //$records = $request->user()->emailRecord()->where('category_id', 1)->get();
 
         //var_dump($records);
         $mails = [];
 
-        if (!empty($records))
+        $ih = new InboxHandler($request->user(), $request);
+        $mails = $ih->getMails();
+
+        /*if (!empty($records))
         {
             foreach ($records as $record)
             {
@@ -78,7 +82,7 @@ class InboxController extends Controller
                     array_push($mails, $mail);
                 }
             }
-        }
+        }*/
         return response()->json($mails);
     }
 

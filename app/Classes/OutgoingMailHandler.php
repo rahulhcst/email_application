@@ -59,7 +59,7 @@ namespace App\Classes;
 
          if (!empty($emailThread))
          {
-             $this->request->references = $emailThread->id;
+             $this->request->references_id = $emailThread->id;
              //$email->subject = htmlspecialchars($request->input('subject'));
              $emailThread->subject = $this->request->input('subject');
              //$email->attachment = $request->input('attachment');
