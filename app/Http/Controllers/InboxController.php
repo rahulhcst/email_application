@@ -57,32 +57,9 @@ class InboxController extends Controller
      */
     public function showAll(Request $request)
     {
-        //$records = $request->user()->emailRecord()->where('category_id', 1)->get();
-
-        //var_dump($records);
-        $mails = [];
-
+        //$mails = [];
         $ih = new InboxHandler($request->user(), $request);
         $mails = $ih->getMails();
-
-        /*if (!empty($records))
-        {
-            foreach ($records as $record)
-            {
-                $emailRecord = Email::find($record->email_id);
-                if (!empty($emailRecord))
-                {
-                    $mail['id'] = $emailRecord->id;
-                    $mail['subject'] = $emailRecord->subject;
-                    //$mail['body'] = htmlspecialchars($emailRecord->body);
-                    $mail['body'] = nl2br($emailRecord->body);
-                    $user = User::find($emailRecord->userid);
-                    $mail['name'] = $user->name;
-                    $mail['time'] = $emailRecord->updated_at;
-                    array_push($mails, $mail);
-                }
-            }
-        }*/
         return response()->json($mails);
     }
 

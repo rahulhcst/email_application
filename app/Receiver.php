@@ -10,6 +10,7 @@ class Receiver extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id', 'from_receiver_id');
+        //return $this->belongsTo(User::class, 'id', 'from_receiver_id');
+        return $this->hasOne(User::class, 'id', 'to_user_id');
     }
 }

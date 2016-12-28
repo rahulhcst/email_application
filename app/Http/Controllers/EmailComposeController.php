@@ -100,7 +100,7 @@ class EmailComposeController extends Controller
     public function update(Request $request, $id)
     {
         $omh = new OutgoingMailHandler($request->user(), $request);
-        $omh->handleOutgoingMail();
+        $omh->handleOutgoingMail($id);
 
         $receivers = $request->input('receivers');
         foreach ($receivers as $receiver){

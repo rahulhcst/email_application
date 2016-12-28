@@ -27,7 +27,7 @@ class IncomingMailHandler
     {
         Sender::create([
             'record_id' => $emailRecord->id,
-            'from_user_id' => $emailRecord->id,
+            'from_user_id' => $this->request->user()->id,
             'timestamp' => time()
         ]);
     }
@@ -48,7 +48,7 @@ class IncomingMailHandler
             'thread_id' => $emailThread->id,
             'category_id' => 1,
             'references_id' => $this->request->references_id,
-            'mail_body' => $this->request->input('mail_body'),
+            'mail_body' => $this->request->input('body'),
             'attachment' => false,
             'timestamp' => time(),
         ]);

@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(EmailRecord::class, 'senderid', 'id');
     }
+    public function senders()
+    {
+        return $this->hasMany(Sender::class, 'from_user_id', 'id');
+    }
 }

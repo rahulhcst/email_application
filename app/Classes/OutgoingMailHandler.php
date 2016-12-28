@@ -7,6 +7,7 @@
  */
 
 namespace App\Classes;
+ use App\EmailThread;
  use App\Receiver;
  use App\User;
  use Illuminate\Http\Request;
@@ -24,23 +25,22 @@ namespace App\Classes;
 
      private function insertReceivers($emailRecordId, $userId)
      {
-             Receiver::create([
-                 'record_id' => $emailRecordId,
-                 'to_user_id' => $userId,
-                 'timestamp' => time()
-             ]);
+         Receiver::create([
+             'record_id' => $emailRecordId->id,
+             'to_user_id' => $userId,
+             'timestamp' => time()
+         ]);
      }
 
-     private function insertInEmailRecord($emailThread)
+     private function insertInEmailRecord(EmailThread $emailThread)
      {
-         $emailRecord = $this->user->emailRecord->create([
+         $emailRecord = $this->user->emailRecord()->create([
              'thread_id' => $emailThread->id,
              'category_id' => 2,
-             'mail_body' => $this->request->input('mail_body'),
+             'mail_body' => $this->request->input('body'),
              'attachment' => false,
              'timestamp' => time()
          ]);
-
 
          if (is_object($emailRecord))
              return $emailRecord;
@@ -53,9 +53,9 @@ namespace App\Classes;
 
      }
 
-     private function updateEmailThread()
+     private function updateEmailThread($id)
      {
-         $emailThread = $this->user->emailThread()->find($this->request->input('id'));
+         $emailThread = $this->user->emailThread()->find($id);
 
          if (!empty($emailThread))
          {
@@ -66,28 +66,28 @@ namespace App\Classes;
              $emailThread->timestamp = time();
              $emailThread->sent = true;
              $emailThread->save();
-
              return $emailThread;
          }
 
          return false;
      }
 
-     public function handleOutgoingMail()
+     public function handleOutgoingMail($id)
      {
-         $emailThread = $this->updateEmailThread();
-
+         $emailThread = $this->updateEmailThread($id);
          if ($emailThread)
          {
              $emailRecord = $this->insertInEmailRecord($emailThread);
-
              if ($emailRecord)
              {
                  $receivers = $this->request->input('receivers');
-                 foreach ($receivers as $receiver)
+                 if (!empty($receivers))
                  {
-                     $receiverId = User::where('email', $receiver)->first();
-                     $this->insertReceivers($emailRecord, $receiverId);
+                     foreach ($receivers as $receiver)
+                     {
+                         $receiverId = User::where('email', $receiver)->first();
+                         $this->insertReceivers($emailRecord, $receiverId->id);
+                     }
                  }
              }
          }
