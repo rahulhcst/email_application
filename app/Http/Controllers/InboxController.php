@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes\InboxHandler;
 use App\Email;
+use App\EmailThread;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -46,9 +47,11 @@ class InboxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, EmailThread $id)
     {
-        //
+        $ih = new InboxHandler($request->user(), $request);
+        $mails = $ih->getThreadMails($id);
+        return response()->json($mails);
     }
 
     /**

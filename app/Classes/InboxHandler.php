@@ -9,6 +9,7 @@
 namespace App\Classes;
 
 use App\EmailRecord;
+use App\EmailThread;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -68,10 +69,10 @@ class InboxHandler
         return $emailRecords;
     }
 
-    private function getThreadMails($emailThread)
+    /*private function getThreadMails($emailThread)
     {
 
-    }
+    }*/
 
     private function getMailThread()
     {
@@ -97,6 +98,11 @@ class InboxHandler
     public function getMails()
     {
         return $this->getMailThread();
+    }
+
+    public function getThreadMails(EmailThread $emailThread)
+    {
+        return $this->getEmailRecords($emailThread);
     }
 
 }

@@ -33,4 +33,5 @@ Route::group(['prefix' => 'email', 'middleware' => 'auth'],function (){
 });
 
 Route::get('inbox', 'InboxController@showAll');
+Route::get('inbox/{id}', 'InboxController@show');
 Route::get('sent_mails', 'SentController@showAll');
