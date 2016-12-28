@@ -45,6 +45,13 @@
                    });
            });
        },
+       attachReplyThreads:function (id) {
+
+       },
+        makeReplyBox:function (id) {
+
+
+       },
        getEmails:function () {
            var self=this;
            $.ajax({
@@ -62,13 +69,15 @@
             self.$mail_type.find("#inbox span").text(emailLength);
             for(var i=0;i<emailLength;i++){
                 //data[i].body=data[i].body.replace(/↵/g, "<br/>");
+                data[i].name="Anonymous";
+                data[i].body="Request pe aayegi";
              self.$panel_group_inbox.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
                  '<a data-toggle="collapse" href="#mail'+data[i].id+'"> ' +
                  '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].name+'</span> ' +
                  '<span class="">'+data[i].subject+'</span> ' +
-                 '<span class="badge pull-right">'+data[i].time.date+'</span> ' +
+                 '<span class="badge pull-right">'+data[i].updated_at+'</span> ' +
                  '</a> ' +
                  '</h4>'+
                  '</div> ' +
@@ -90,7 +99,7 @@
                 '<a data-toggle="collapse" href="#mail'+data[i].id+'"> ' +
                 '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].name+'</span> ' +
                 '<span class="">'+data[i].subject+'</span> ' +
-                '<span class="badge pull-right">'+data[i].time.date+'</span> ' +
+                '<span class="badge pull-right">'+data[i].time+'</span> ' +
                 '</a> ' +
                 '</h4>'+
                 '</div> ' +
