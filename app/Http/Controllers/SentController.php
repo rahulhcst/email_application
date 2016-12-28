@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\SentHandler;
 use App\Email;
 use App\EmailRecord;
 use App\User;
@@ -58,11 +59,14 @@ class SentController extends Controller
      */
     public function showAll(Request $request)
     {
-        $records = $request->user()->emailRecord()->where('category_id', 2)->get();
+        //$records = $request->user()->emailRecord()->where('category_id', 2)->get();
 
         $mails = [];
+        $sh = new SentHandler($request->user(), $request);
+        $sh->getMails();
 
-        if (!empty($records))
+
+        /*if (!empty($records))
         {
             foreach ($records as $record)
             {
@@ -71,7 +75,7 @@ class SentController extends Controller
                 if (!empty($emailRecord))
                 {
                     /*var_dump($emailRecord);
-                    die;*/
+                    die;*\/
                     
                     $mail['id'] = $emailRecord->id;
                     $mail['subject'] = $emailRecord->subject;
@@ -85,7 +89,7 @@ class SentController extends Controller
                     array_push($mails, $mail);
                 }
             }
-        }
+        }*/
         return response()->json($mails);
     }
 
