@@ -29,7 +29,6 @@ class InboxHandler
 
         foreach ($emailRecords as $emailRecord)
         {
-            var_dump($emailRecord->category_id);
             if ($emailRecord->category_id == 1)
             {
                 $sender = $emailRecord->senders()->get();

@@ -75,7 +75,6 @@ class SentHandler
             foreach ($emailThreads as $k => $emailThread)
             {
                 $inbox[$k]['thread'] = $emailThread;
-                //$emailRecords = EmailRecord::where('thread_id', $emailThread->id)->orderBy('id')->get();
                 $emailRecords = $this->getEmailRecords($emailThread);
                 $inbox[$k]['mails'] = $emailRecords;
             }
