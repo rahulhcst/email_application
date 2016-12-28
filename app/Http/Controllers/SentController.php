@@ -63,7 +63,7 @@ class SentController extends Controller
 
         $mails = [];
         $sh = new SentHandler($request->user(), $request);
-        $sh->getMails();
+        $mails = $sh->getMails();
 
 
         /*if (!empty($records))

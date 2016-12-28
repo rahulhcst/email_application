@@ -46,17 +46,19 @@ class SentHandler
                         $emailRecord->sender = $senderDetails;
                     }
                 }
-            } elseif ($emailRecord->category_id == 1)
+            } elseif ($emailRecord->category_id == 2)
             {
                 $receivers = $emailRecord->receivers()->get();
                 if (!empty($receivers))
                 {
+                    $receiverDetails = [];
                     foreach ($receivers as $receiver)
                     {
                         $user = $receiver->user()->first();
-                        //$emailRecord->receiver[]['name'] = $user->name;
-                        //$emailRecord->receiver[]['email'] = $user->email;
+                        if ($user)
+                            $receiverDetails[] = ['name' => $user->name, 'email' => $user->email];
                     }
+                    $emailRecord->receivers = $receiverDetails;
                 }
             }
         }

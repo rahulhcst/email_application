@@ -29,6 +29,7 @@ class InboxHandler
 
         foreach ($emailRecords as $emailRecord)
         {
+            var_dump($emailRecord->category_id);
             if ($emailRecord->category_id == 1)
             {
                 $sender = $emailRecord->senders()->get();
@@ -48,17 +49,19 @@ class InboxHandler
                         $emailRecord->sender = $senderDetails;
                     }
                 }
-            } elseif ($emailRecord->category_id == 1)
+            } elseif ($emailRecord->category_id == 2)
             {
                 $receivers = $emailRecord->receivers()->get();
                 if (!empty($receivers))
                 {
+                    $receiverDetails = [];
                     foreach ($receivers as $receiver)
                     {
                         $user = $receiver->user()->first();
-                        //$emailRecord->receiver[]['name'] = $user->name;
-                        //$emailRecord->receiver[]['email'] = $user->email;
+                        if ($user)
+                            $receiverDetails[] = ['name' => $user->name, 'email' => $user->email];
                     }
+                    $emailRecord->receivers = $receiverDetails;
                 }
             }
 

@@ -14,4 +14,9 @@ class EmailRecord extends Model
     {
         return $this->hasOne(Sender::class, 'record_id', 'id');
     }
+
+    public function receivers()
+    {
+        return $this->hasMany(Receiver::class, 'record_id', 'id');
+    }
 }
