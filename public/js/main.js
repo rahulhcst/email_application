@@ -50,7 +50,6 @@
        },
         makeReplyBox:function (id) {
 
-
        },
        getEmails:function () {
            var self=this;
@@ -144,7 +143,20 @@
                    self.$compose_window.hide();
                });
 
-       }
+       },
+        replyMail:function () {
+            var self = this;
+            var receivers = self.$email.val();
+            $.ajax({
+                method: "POST",
+                url: "/email/"+self.currentMailID,
+                data: {subject: self.currentMailID}
+            })
+                .done(function( msg ) {
+                    alert( "Saved to Drafts " + msg );
+                    self.$compose_window.hide();
+                });
+        }
 
    };
    Gmail.init();
