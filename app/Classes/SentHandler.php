@@ -74,9 +74,11 @@ class SentHandler
         {
             foreach ($emailThreads as $k => $emailThread)
             {
-                $inbox[$k]['thread'] = $emailThread;
+                $emailThread->count = $emailThread->emailRecords()->count();
+                //$emailThread->
+                /*$inbox[$k]['thread'] = $emailThread;
                 $emailRecords = $this->getEmailRecords($emailThread);
-                $inbox[$k]['mails'] = $emailRecords;
+                $inbox[$k]['mails'] = $emailRecords;*/
             }
         }
         return $inbox;

@@ -82,13 +82,16 @@ class InboxHandler
         {
             foreach ($emailThreads as $k => $emailThread)
             {
-                $inbox[$k]['thread'] = $emailThread;
+                $emailThread->count = $emailThread->emailRecords()->count();
+                $emailThread->name = 'Rahul';
+                //$inbox[$k]['thread'] = $emailThread;
                 //$emailRecords = EmailRecord::where('thread_id', $emailThread->id)->orderBy('id')->get();
-                $emailRecords = $this->getEmailRecords($emailThread);
-                $inbox[$k]['mails'] = $emailRecords;
+                /*$emailRecords = $this->getEmailRecords($emailThread);
+                $inbox[$k]['mails'] = $emailRecords;*/
             }
         }
-        return $inbox;
+        //return $inbox;
+        return $emailThreads;
     }
 
     public function getMails()
