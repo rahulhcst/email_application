@@ -74,7 +74,7 @@
              self.$panel_group_inbox.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
-                 '<a data-toggle="collapse" href="#mail'+data[i].id+'" onclick="Gmail.getMailThread(data[i].id)"> ' +
+                 '<a data-toggle="collapse" href="#mail'+data[i].id+'" onclick="Gmail.getMailThread('+data[i].id+')"> ' +
                  '<span class="name" style="min-width: 120px;display: inline-block;">'+data[i].name+'</span> ' +
                  '<span class="">'+data[i].subject+'</span> ' +
                  '<span class="badge pull-right">'+data[i].updated_at+'</span> ' +
