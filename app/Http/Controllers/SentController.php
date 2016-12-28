@@ -60,7 +60,6 @@ class SentController extends Controller
     {
         $records = $request->user()->emailRecord()->where('category_id', 2)->get();
 
-        //var_dump($records);
         $mails = [];
 
         if (!empty($records))

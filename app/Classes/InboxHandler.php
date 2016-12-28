@@ -24,18 +24,29 @@ class InboxHandler
 
     private function getEmailRecords($emailThread)
     {
-        $emailRecords = $emailThread->emailRecord()->where('thread_id', $emailThread->id)->orderBy('id')->get();
+        //$emailRecords = $emailThread->emailRecord()->where('thread_id', $emailThread->id)->orderBy('id')->get();
+        $emailRecords = $emailThread->emailRecords()->orderBy('id')->get();
 
         foreach ($emailRecords as $emailRecord)
         {
             if ($emailRecord->category_id == 1)
             {
                 $sender = $emailRecord->senders()->get();
-                if (!empty($sender))
+
+                //var_dump(empty($sender));
+                //var_dump(count($sender));die();
+                if(count($sender))//if (!empty($sender))
                 {
+                    //var_dump($sender);
                     $user = $sender[0]->user()->first();
-                    $emailRecord->sender['name'] = $user->name;
-                    $emailRecord->sender['email'] = $user->email;
+                    if ($user)
+                    {
+                        $senderDetails = [];
+                        $emailRecord->sender = [];
+                        $senderDetails['name'] = $user->name;
+                        $senderDetails['email'] = $user->email;
+                        $emailRecord->sender = $senderDetails;
+                    }
                 }
             } elseif ($emailRecord->category_id == 1)
             {
@@ -45,14 +56,14 @@ class InboxHandler
                     foreach ($receivers as $receiver)
                     {
                         $user = $receiver->user()->first();
-                        $emailRecord->receiver[]['name'] = $user->name;
-                        $emailRecord->receiver[]['email'] = $user->email;
+                        //$emailRecord->receiver[]['name'] = $user->name;
+                        //$emailRecord->receiver[]['email'] = $user->email;
                     }
                 }
             }
 
         }
-
+        return $emailRecords;
     }
 
     private function getThreadMails($emailThread)
@@ -69,18 +80,13 @@ class InboxHandler
         {
             foreach ($emailThreads as $k => $emailThread)
             {
-                //$emailThread->mails = [];
                 $inbox[$k]['thread'] = $emailThread;
-                $emailRecords = EmailRecord::where('thread_id', $emailThread->id)->orderBy('id')->get();
-                //array_push($inbox, $emailRecords);
-                //array_push($emailThread->mails, $emailRecords);
-                //$emailThread->mails = $emailRecords;
+                //$emailRecords = EmailRecord::where('thread_id', $emailThread->id)->orderBy('id')->get();
+                $emailRecords = $this->getEmailRecords($emailThread);
                 $inbox[$k]['mails'] = $emailRecords;
             }
-        }/*else
-            $emailThreads = [];*/
+        }
         return $inbox;
-        //$emailThreads;
     }
 
     public function getMails()

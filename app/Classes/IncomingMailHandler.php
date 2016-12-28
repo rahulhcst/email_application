@@ -27,7 +27,7 @@ class IncomingMailHandler
     {
         Sender::create([
             'record_id' => $emailRecord->id,
-            'from_user_id' => $emailRecord->id,
+            'from_user_id' => $this->request->user()->id,
             'timestamp' => time()
         ]);
     }

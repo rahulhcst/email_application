@@ -34,9 +34,6 @@ namespace App\Classes;
 
      private function insertInEmailRecord(EmailThread $emailThread)
      {
-         /*var_dump($this->request->input('body'));
-         die;*/
-
          $emailRecord = $this->user->emailRecord()->create([
              'thread_id' => $emailThread->id,
              'category_id' => 2,
