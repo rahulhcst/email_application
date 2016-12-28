@@ -88,7 +88,13 @@
             }
         },
     getMailThread:function(id){
-           alert("aayega kuch");
+        $.ajax({
+            method: "GET",
+            url: "inbox/"+id
+        })
+            .done(function( response ) {
+               console.log(response);
+            });
     },
     fillsentMails:function (data) {
         var self=this;
