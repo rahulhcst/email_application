@@ -69,7 +69,6 @@
             for(var i=0;i<emailLength;i++){
                 //data[i].body=data[i].body.replace(/↵/g, "<br/>");
                 //data[i].name="Anonymous";
-                data[i].body="Request pe aayegi";
              self.$panel_group_inbox.append('<div class="panel panel-default"> ' +
                  '<div class="panel-heading"> ' +
                  '<h4 class="panel-title">' +
@@ -81,7 +80,7 @@
                  '</h4>'+
                  '</div> ' +
                  '<div id="mail'+data[i].id+'" class=" collapse"> ' +
-                 '<div class="panel-body">'+data[i].body+'</div> ' +
+                 '<div class="panel-body"></div> ' +
                  '</div> ' +
                  '</div>');
             }
@@ -92,7 +91,7 @@
             url: "inbox/"+id
         })
             .done(function( response ) {
-               console.log(response);
+               $("#mail"+id).find(".mail-body").html(response.mail_body);
             });
     },
     fillsentMails:function (data) {
